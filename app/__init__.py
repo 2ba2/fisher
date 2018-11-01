@@ -1,5 +1,9 @@
 from flask import Flask
-from app.models.book import db
+from flask_login import LoginManager
+from app.models.base import db
+
+
+login_manager = LoginManager()
 
 
 def register_web_blueprint(app):

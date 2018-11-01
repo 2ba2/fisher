@@ -1,13 +1,10 @@
 import json
 from sqlalchemy import Column, String
 from sqlalchemy import Integer
-# from app.models.base import Base
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from app.models.base import Base
 
 
-class Book(db.Model):
+class Book(Base):
     """
         一些属性定义重复性比较大，元类可以解决这个问题
     """
@@ -25,17 +22,17 @@ class Book(db.Model):
     summary = Column(String(1000))
     image = Column(String(50))
 
-    # @property
-    # def author(self):
-    #     return self._author if not self._author else json.loads(self._author)
-    #
-    # @author.setter
-    # def author(self, value):
-    #     if not isinstance(value, str):
-    #         self._author = json.dumps(value, ensure_ascii=False)
-    #     else:
-    #         self._author = value
-    #
-    # @property
-    # def author_str(self):
-    #     return '' if not self._author else '、'.join(self.author)
+    @property
+    def author(self):
+        return self._author if not self._author else json.loads(self._author)
+
+    @author.setter
+    def author(self, value):
+        if not isinstance(value, str):
+            self._author = json.dumps(value, ensure_ascii=False)
+        else:
+            self._author = value
+
+    @property
+    def author_str(self):
+        return '' if not self._author else '、'.join(self.author)
