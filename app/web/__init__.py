@@ -10,5 +10,5 @@ from app.web import errors
 from app.web import gift
 # from app.web import drift
 from app.web import passenger
-# from app.web import test
+from app.web import test
 
